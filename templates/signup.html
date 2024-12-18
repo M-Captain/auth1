@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,30 +30,16 @@
 
   <div class="signup-container">
     <h2 class="signup-title">Create an Account</h2>
-    <form>
-      <div class="form-group">
-        <label for="name">Full Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Enter a password" required>
-      </div>
-      <div class="form-group">
-        <label for="confirm-password">Confirm Password</label>
-        <input type="password" class="form-control" id="confirm-password" placeholder="Confirm your password" required>
-      </div>
-      <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+    <form action="/signup" method="POST">
+      {% csrf_token %}
+      {{form|crispy}}
+      <button type="submit" value="Save" class="btn btn-primary btn-block">Sign Up</button>
     </form>
     <div class="text-center mt-3">
       <a href={% url "login" %}>Already have an account? Login here</a>
     </div>
   </div>
-
+  {{p}}
   <!-- Bootstrap JS and dependencies -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
